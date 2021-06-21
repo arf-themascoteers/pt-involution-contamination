@@ -4,10 +4,21 @@ import torch.nn.functional as F
 import torch
 from torchvision import datasets
 from torchvision.transforms import ToTensor
+import matplotlib.pyplot as plt
 
-def train():
-    NUM_EPOCHS = 3
-    BATCH_SIZE = 100
+def visTensor(tensors):
+    for tensor in tensors:
+        mean = torch.mean(tensor)
+        tensor = tensor.data.clone()
+        tensor[tensor >= mean] = 255
+        tensor[tensor < mean] = 0
+        np_array = tensor.numpy()
+        plt.imshow(np_array)
+        plt.show()
+
+def train(model):
+    NUM_EPOCHS = 1000
+    BATCH_SIZE = 1
 
     working_set = datasets.MNIST(
         root='data',
@@ -17,7 +28,7 @@ def train():
     )
 
     dataloader = DataLoader(working_set, batch_size=BATCH_SIZE, shuffle=False)
-    model = SimpleNet()
+
     model.train()
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
 
@@ -30,9 +41,16 @@ def train():
             loss.backward()
             optimizer.step()
             print(f'Epoch:{epoch + 1}, Loss:{loss.item():.4f}')
+            break
     torch.save(model.state_dict(), 'models/cnn.h5')
     return model
 
-train()
+model = SimpleNet()
+filter = model.involution.kernels.data.clone()
+visTensor(filter)
+train(model)
+filter = model.involution.kernels.data.clone()
+visTensor(filter)
+
 
 

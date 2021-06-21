@@ -17,7 +17,7 @@ class SimpleNet(nn.Module):
 
         self.involution = Involution()
         self.contamination = Contamination()
-        self.linear = nn.Linear(20 * 28 * 28, 10)
+        self.linear = nn.Linear(5 * 28 * 28, 10)
 
         # self.flatten = nn.Flatten()
         # self.linear = nn.Linear(28 * 28, 100)
