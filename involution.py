@@ -3,7 +3,7 @@ import torch
 
 
 class Involution(nn.Module):
-    def __init__(self, output_channel=5, height = 28, width = 28):
+    def __init__(self, output_channel=20, height = 28, width = 28):
         super(Involution, self).__init__()
         self.output_channel = output_channel
         self.height = height
