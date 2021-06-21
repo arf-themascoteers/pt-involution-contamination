@@ -1,3 +1,15 @@
-Run train.py to train the machine
+product layer
 
-And then, run test.py to test using the trained parameters.
+sum layer - 
+-- before sum, adjust influence
+    
+
+region influence is learnable parameters
+
+count_filder * regions?
+
+===
+
+prod -> maxpool -> cotaminate -> sum
+
+prod -> contaminate by neibour overlapper region ->sum
